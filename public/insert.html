@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="javascripts/calls.js"></script>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+</head>
+<body>
+    <ul>
+        <li><a href="index.html">Search</a></li>
+        <li><a href="insert.html">Insert</a></li>
+    </ul>
+    <h1>Insert child</h1>
+    <label for="child_name">Child Name</label><br>
+    <input type="text" id="child_name" name="child_name"><br><br>
+    <label for="class">Class</label><br>
+    <input type="text" id="class" name="class"><br><br>
+    <label for="car">Car Registration Number(s)</label><span>   </span><button type="button" name="button" onclick="new_input()">+</button><br>
+    <div id="cars">
+        <input type="text" id="car0" name="car0" placeholder="Car 1"><br>
+    </div>
+    <br>
+    <button onclick="insert_child()">Submit</button>
+    <br>
+    <p style="color:green" id="result"></p>
+</body>
+</html>

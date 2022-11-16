@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="javascripts/calls.js"></script>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+</head>
+<body onload="count_class()">
+    <ul>
+        <li><a href="index.html">Search</a></li>
+        <li><a href="insert.html">Insert</a></li>
+    </ul>
+    <h1>Search for your child</h1>
+    <label for="car_regis">Car Registration Number</label><br>
+    <input type="text" id="car_regis" name="car_regis"><br><br>
+    <button onclick="search()">Search</button>
+    <p style="color:green" id="result"> </p>
+    
+    <div id="classA">
+        <div class="header">
+            <h3>Class A</h3>
+            <span id="cA"></span>
+        </div>
+        <div id="partA"></div>
+    </div>
+    <div id="classB">
+        <div class="header">
+            <h3>Class B</h3>
+            <span id="cB"></span>
+        </div>
+        <div id="partB"></div>
+    </div>
+</body>
+</html>

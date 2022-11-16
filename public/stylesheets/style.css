@@ -1,0 +1,44 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+}
+
+#classA {
+  margin-left: 50px;
+  width:40%;
+  float: left;
+}
+
+#classB {
+  margin-right: 50px;
+  float: right;
+  width:40%;
+}
+
+.header {
+  background-color: #c7e5f1;
+  height:20%;
+}
+
+.mark {
+  float:right;
+}
+
+#result {
+  color: green;
+  display: block;
+}
