@@ -24,8 +24,6 @@ const config = {
   }
 };
 
-// create a 'pool' (group) of connections to be used for connecting with our SQL server
-// const dbConnectionPool = new Connection(config);
 const dbConnectionPool =new sql.ConnectionPool(config)
   .connect()
   .then (pool =>{
