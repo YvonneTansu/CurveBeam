@@ -13,42 +13,52 @@ router.post('/insert-child', async (req, res) => {
       const pool = await req.pool;
       const request = await pool.request();
 
-      // Check if email is already used
-      let query = `BEGIN;
-      declare @id NVARCHAR(255);
-      SELECT @id = ID FROM "User" WHERE name = '${name}';
-      IF @id IS NULL
-          BEGIN;
-          SET @id=NEWID();
-          INSERT INTO "User" (ID, name, class) VALUES (@id,'${name}','${child_class}');
-          SELECT @id AS ID
-          END;
-      ELSE
-          SELECT @id AS ID
-      END;`;
-      let response = await request.query(query);
-      if (response.recordset.length == 0) {
-        console.error("INSERT: format is wrong");
-        res.status(400).send("Please check your child name and class again.");
+      // check if car registraion plate is used
+      let str_arr = "";
+      for(let i = 0; i < carSize-1; i++) {
+        str_arr += "'" + cars[i] + "',";
+      }
+      str_arr += "'" + cars[carSize-1] + "'";
+      let queryy=`SELECT * FROM "Car" WHERE reg_no IN (${str_arr})`;
+      let responsee = await request.query(queryy);
+      console.log(responsee);
+      if (responsee.rowsAffected[0] > 0) {
+        console.error("INSERT: Duplicate registration number");
+        res.status(400).send("Registration number is already used!");
+        res.end();
       }
       else {
-        let id = response.recordset[0].ID;
-        for (let i = 0; i < carSize; i++) {
-          let query = `INSERT INTO "Car" (child, reg_no) VALUES ('${id}', '${cars[i]}');`
-          let response = await request.query(query);
-          if (response.rowsAffected.length == 0) {
-            console.error("INSERT: format is wrong");
-            res.status(400).send("Please check your car registration number again.");
-            res.end();
-          }
+        let query = `BEGIN;
+        declare @id NVARCHAR(255);
+        SELECT @id = ID FROM "User" WHERE name = '${name}';
+        IF @id IS NULL
+            BEGIN;
+            SET @id=NEWID();
+            INSERT INTO "User" (ID, name, class) VALUES (@id,'${name}','${child_class}');
+            SELECT @id AS ID
+            END;
+        ELSE
+            SELECT @id AS ID
+        END;`;
+        let response = await request.query(query);
+        if (response.recordset.length == 0) {
+          console.error("INSERT: format is wrong");
+          res.status(400).send("Please check your child name and class again.");
+          res.end();
         }
-        res.status(200).send(response);
+        else {
+          let id = response.recordset[0].ID;
+          for (let i = 0; i < carSize; i++) {
+            let query = `INSERT INTO "Car" (child, reg_no) VALUES ('${id}', '${cars[i]}');`
+            let response = await request.query(query);
+            if (response.rowsAffected.length == 0) {
+              console.error("INSERT: format is wrong");
+              res.status(400).send("Please check your car registration number again.");
+            }
+          }
+          res.status(200).send(response);
+        }
       }
-    }
-    else {
-      // Email and/or password missing
-      console.error("LOGIN: Name and/or Class and/or Car missing");
-      res.status(400).send("Please input name, class and car.");
     }
   } catch (err){
     console.error(err);

@@ -16,13 +16,11 @@ let carSize = 1;
 
 function new_input(){
     let input = document.createElement("input");
-    let new_line = document.createElement("br");
     input.id = "car"+carSize;
     input.name = "car"+carSize;
-    input.className = "appearance-none w-1/5 mt-1 bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500";
+    input.className = "appearance-none w-1/5 mt-1 mb-2 block bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500";
     input.placeholder = "Car "+(carSize+1);
     document.getElementById("cars").appendChild(input);
-    document.getElementById("cars").appendChild(new_line);
     carSize++;
 }
 
@@ -32,7 +30,7 @@ function insert_child(){
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("result").innerHTML = `<strong class="font-bold">Child inserted!  </strong>`;
-            document.getElementById("result").className += "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative visible";
+            document.getElementById("result").className = "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative visible";
             document.getElementById("child_name").value = "";
             document.getElementById("first_class").checked = false;
             document.getElementById("second_class").checked = false;
@@ -42,6 +40,12 @@ function insert_child(){
                 car.remove();
             }
             carSize = 1;
+        }
+        else {
+            console.log(this.response);
+            document.getElementById("result").innerHTML = `<strong class="font-bold">${this.response}  </strong>
+            <span class="block sm:inline">Try Again</span>`;
+            document.getElementById("result").className = "relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded";
         }
     };
 
@@ -95,7 +99,7 @@ function mark_left() {
             count_class();
             document.getElementById(child).remove();
             document.getElementById("result").innerHTML = `<strong class="font-bold">The child successfully left :)  </strong>`;
-            document.getElementById("result").className += "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative visible";
+            document.getElementById("result").className = "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative visible";
         }
     };
     
@@ -122,7 +126,6 @@ function search(){
                 return;
             }
             let newDiv = document.createElement("div");
-            // let new_line = document.createElement("br");
             newDiv.className = "block h-11 relative pl-2 pr-2";
             let newChild = document.createElement("span");
             newChild.className = "font-semibold top-1/4 absolute"
@@ -134,7 +137,6 @@ function search(){
             newButton.setAttribute( "onClick", "javascript: mark_left();" );;
             newDiv.appendChild(newChild);
             newDiv.appendChild(newButton);
-            // document.getElementById('part'+response.class).appendChild(new_line);
             document.getElementById('part'+response.class).appendChild(newDiv);
         }
         else if (this.status == 400) {
