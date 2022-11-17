@@ -6,8 +6,8 @@ var logger = require('morgan');
 const sql = require('mssql');
 require('dotenv').config();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./api/index');
+var usersRouter = require('./api/users');
 
 const config = {
   authentication: {
