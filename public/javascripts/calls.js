@@ -74,8 +74,10 @@ function count_class(){
         if (this.readyState == 4 && this.status == 200) {
             // console.log(this.responseText);
             let response = JSON.parse(this.responseText);
-            document.getElementById("cA").innerHTML = `Left: ${response.leftA}<br>Stay: ${response.stayA}`;
-            document.getElementById("cB").innerHTML = `Left: ${response.leftB}<br>Stay: ${response.stayB}`;
+            document.getElementById("cA").innerHTML = `<span>Left : ${response.leftA}</span><span class="float-right text-right">Stay : ${response.stayA}</span>`;
+            document.getElementById("cA").className ="font-mono";
+            document.getElementById("cB").innerHTML = `<span>Left : ${response.leftB}</span><span class="float-right text-right">Stay : ${response.stayB}</span>`;
+            document.getElementById("cB").className ="font-mono";
         }
     };
     
