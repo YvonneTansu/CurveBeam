@@ -56,6 +56,7 @@ function count_class(){
 
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
             let response = JSON.parse(this.responseText);
             document.getElementById("cA").innerHTML = `Left: ${response.leftA}<br>Stay: ${response.stayA}`;
             document.getElementById("cB").innerHTML = `Left: ${response.leftB}<br>Stay: ${response.stayB}`;
