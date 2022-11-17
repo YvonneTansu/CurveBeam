@@ -31,8 +31,8 @@ function insert_child(){
 
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("result").innerHTML = "Child inserted!";
-            document.getElementById("result").style.color = "green";
+            document.getElementById("result").innerHTML = `<strong class="font-bold">Child inserted!  </strong>`;
+            document.getElementById("result").className += "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative visible";
             document.getElementById("child_name").value = "";
             document.getElementById("first_class").checked = false;
             document.getElementById("second_class").checked = false;
@@ -48,8 +48,10 @@ function insert_child(){
     let name = document.getElementById("child_name").value;
     let child_class = document.getElementById("first_class").checked ? "A" : (document.getElementById("second_class").checked ? "B" : "");
     if (!child_class) {
-        document.getElementById("result").innerText = "Please select a class!";
-        document.getElementById("result").style.color = "red";
+        document.getElementById("result").innerHTML = `<strong class="font-bold">Class not selected!  </strong>
+        <span class="block sm:inline">Try Again</span>`;
+        document.getElementById("result").className = "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative ";
+        
         return;
     }
     console.log(child_class);
@@ -90,8 +92,8 @@ function mark_left() {
         if (this.readyState == 4 && this.status == 200) {
             count_class();
             document.getElementById(child).remove();
-            document.getElementById("result").innerText = "The child successfully left :)";
-            document.getElementById("result").style.color = "green";
+            document.getElementById("result").innerHTML = `<strong class="font-bold">The child successfully left :)  </strong>`;
+            document.getElementById("result").className += "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative visible";
         }
     };
     
@@ -108,20 +110,20 @@ function search(){
         if (this.readyState == 4 && this.status == 200) {
             let response = JSON.parse(this.responseText);
             if (response.hasLeft) {
-                document.getElementById("result").innerText = "The child has already left!";
-                document.getElementById("result").style.color = "red";
+                document.getElementById("result").innerHTML = `<strong class="font-bold">The child has already left!  </strong>`;
+                document.getElementById("result").className = "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative ";
                 return;
             }
             else if (document.getElementById(response.ID)) {
-                document.getElementById("result").innerText = "The child is in the queue already!";
-                document.getElementById("result").style.color = "red";
+                document.getElementById("result").innerHTML = `<strong class="font-bold">The child is in the queue already!  </strong>`;
+                document.getElementById("result").className = "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative ";
                 return;
             }
             let newDiv = document.createElement("div");
             // let new_line = document.createElement("br");
-            newDiv.className = "block h-11";
+            newDiv.className = "block h-11 relative pl-2 pr-2";
             let newChild = document.createElement("span");
-            newChild.className = "font-semibold text-center"
+            newChild.className = "font-semibold top-1/4 absolute"
             newChild.innerText = response.name;
             let newButton = document.createElement("button");
             newButton.innerText = "MARK AS LEFT";
@@ -134,8 +136,9 @@ function search(){
             document.getElementById('part'+response.class).appendChild(newDiv);
         }
         else if (this.status == 400) {
-            document.getElementById("result").innerText = "NOT FOUND!";
-            document.getElementById("result").style.color = "red";
+            document.getElementById("result").innerHTML = `<strong class="font-bold">NOT FOUND!  </strong>
+            <span class="block sm:inline">Try Again</span>`;
+            document.getElementById("result").className = "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative ";
         }
     };
     

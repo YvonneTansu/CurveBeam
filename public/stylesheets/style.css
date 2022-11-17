@@ -34,6 +34,6 @@ li {
 }
 
 #result {
-  color: green;
   display: block;
+  width: 20%;
 }
