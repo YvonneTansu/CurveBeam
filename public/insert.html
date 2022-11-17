@@ -2,28 +2,30 @@
 <html>
 <head>
     <script src="javascripts/calls.js"></script>
+    <link href="https://unpkg.com/tailwindcss@2.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="javascripts/calls.js"></script>
     <link rel="stylesheet" href="./stylesheets/style.css" />
 </head>
 <body>
     <ul>
-        <li><a href="index.html">Search</a></li>
-        <li><a href="insert.html">Insert</a></li>
+        <li class="text-black font-semibold inline-block border border-gray-200 center w-1/5 text-center py-2 px-4 rounded transition duration-200 hover:bg-blue-100 hover:text-black"><a href="index.html">Search Child</a></li>
+        <li class="text-black font-semibold inline-block border border-gray-200 center w-1/5 text-center py-2 px-4 rounded transition duration-200 hover:bg-blue-100 hover:text-black"><a href="insert.html">Insert Child</a></li>
     </ul>
-    <h1>Insert child</h1>
-    <label for="child_name">Child Name</label><br>
-    <input type="text" id="child_name" name="child_name"><br><br>
-    <label for="class">Class</label><br>
-    <input type="radio" id="first_class" name="class" value="A">
-    <label for="first_class">A</label><br>
-    <input type="radio" id="second_class" name="class" value="B">
-    <label for="second_class">B</label><br><br> 
+    <h1 class="mt-5 font-extrabold text-2xl mt-2 mb-2">Insert child</h1>
+    <label for="child_name" class="text-base font-semibold">Child Name</label><br>
+    <input placeholder="Jane Doe" class="appearance-none w-1/5 mt-1 bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" id="child_name" name="child_name"><br><br>
+    <label for="class" class="text-base font-semibold">Class</label><br>
+    <input class="w-3.5 h-3.5 m-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" id="first_class" name="class" value="A">
+    <label class="text-base font-medium text-gray-900 dark:text-gray-300" for="first_class">A</label>
+    <input class="w-3.5 h-3.5 m-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" id="second_class" name="class" value="B">
+    <label class="text-base font-medium text-gray-900 dark:text-gray-300" for="second_class">B</label><br><br> 
     <!-- <input type="text" id="class" name="class"><br><br> -->
-    <label for="car">Car Registration Number(s)</label><span>   </span><button type="button" name="button" onclick="new_input()">+</button><br>
+    <label for="car" class="text-base font-semibold">Car Registration Number(s)</label><span>   </span><button class="text-black inline-block py-1 px-2 ml-3 rounded border-2 mt-2 mb-2 transition duration-200 hover:bg-blue-100 hover:text-black" type="button" name="button" onclick="new_input()">+</button><br>
     <div id="cars">
-        <input type="text" id="car0" name="car0" placeholder="Car 1"><br>
+        <input class="appearance-none w-1/5 mt-1 bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" id="car0" name="car0" placeholder="Car 1"><br>
     </div>
     <br>
-    <button onclick="insert_child()">Submit</button>
+    <button class="text-black block py-2 px-4 rounded border-2 mt-2 mb-2 transition duration-200 hover:bg-blue-100 hover:text-black" onclick="insert_child()">Submit</button>
     <br>
     <p style="color:green" id="result"></p>
 </body>

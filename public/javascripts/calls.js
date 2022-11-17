@@ -19,6 +19,7 @@ function new_input(){
     let new_line = document.createElement("br");
     input.id = "car"+carSize;
     input.name = "car"+carSize;
+    input.className = "appearance-none w-1/5 mt-1 bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500";
     input.placeholder = "Car "+(carSize+1);
     document.getElementById("cars").appendChild(input);
     document.getElementById("cars").appendChild(new_line);
@@ -117,17 +118,19 @@ function search(){
                 return;
             }
             let newDiv = document.createElement("div");
-            let new_line = document.createElement("br");
+            // let new_line = document.createElement("br");
+            newDiv.className = "block h-11";
             let newChild = document.createElement("span");
+            newChild.className = "font-semibold text-center"
             newChild.innerText = response.name;
             let newButton = document.createElement("button");
             newButton.innerText = "MARK AS LEFT";
-            newButton.className = "mark";
+            newButton.className = "float-right mt-1 mb-1 appearance-none w-1/3 bg-white text-gray-700 border border-gray-200 rounded py-2 px-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500";
             newDiv.id = response.ID;
             newButton.setAttribute( "onClick", "javascript: mark_left();" );;
             newDiv.appendChild(newChild);
             newDiv.appendChild(newButton);
-            document.getElementById('part'+response.class).appendChild(new_line);
+            // document.getElementById('part'+response.class).appendChild(new_line);
             document.getElementById('part'+response.class).appendChild(newDiv);
         }
         else if (this.status == 400) {
