@@ -1,5 +1,5 @@
 # CurveBeam Mini Project
-- Tech stack used: HTML, CSS, JS, Express, Azure SQL
+- Tech stack used: HTML, CSS (TailwindCSS), JS, Express, Azure SQL
 
 ## Functions
 - Insert child along with class and multiple car registration number
