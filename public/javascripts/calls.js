@@ -32,18 +32,31 @@ function insert_child(){
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("result").innerHTML = "Child inserted!";
             document.getElementById("result").style.color = "green";
+            document.getElementById("child_name").value = "";
+            document.getElementById("first_class").checked = false;
+            document.getElementById("second_class").checked = false;
+            document.getElementById("car0").value = "";
+            for (let i = 1; i < carSize; i++) {
+                let car = document.getElementById("car"+i);
+                car.remove();
+            }
+            carSize = 1;
         }
     };
 
     let name = document.getElementById("child_name").value;
-    let child_class = document.getElementById("class").value;
+    let child_class = document.getElementById("first_class").checked ? "A" : (document.getElementById("second_class").checked ? "B" : "");
+    if (!child_class) {
+        document.getElementById("result").innerText = "Please select a class!";
+        document.getElementById("result").style.color = "red";
+        return;
+    }
+    console.log(child_class);
     let cars = [];
     for (let i = 0; i < carSize; i++) {
         let car = document.getElementById("car"+i).value;
         cars = [...cars,car];
     }
-
-    carSize = 1;
     
     // Open connection to server
     xmlhttp.open("POST", "/insert-child", true);
@@ -95,6 +108,11 @@ function search(){
             let response = JSON.parse(this.responseText);
             if (response.hasLeft) {
                 document.getElementById("result").innerText = "The child has already left!";
+                document.getElementById("result").style.color = "red";
+                return;
+            }
+            else if (document.getElementById(response.ID)) {
+                document.getElementById("result").innerText = "The child is in the queue already!";
                 document.getElementById("result").style.color = "red";
                 return;
             }

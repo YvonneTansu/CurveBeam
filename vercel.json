@@ -1,3 +1,0 @@
-{
-    "rewrites": [{ "source": "/count-class", "destination": "/api/count-class" }]
-}
