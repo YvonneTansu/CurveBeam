@@ -8,6 +8,7 @@
 - Counter for how many has left and how many has not left
 
 ## Handler
-- [Insert] alert user to select a class
+- [Insert] Alert user to select a class
+- [Insert] Alert user that a registration number has been associated with a child
 - [Search] Child with respective car registration number is in the queue already, but not marked as left
 - [Search] Child with respective car registration number has already left
